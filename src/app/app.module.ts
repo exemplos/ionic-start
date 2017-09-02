@@ -1,3 +1,4 @@
+import { HttpModule, Http } from '@angular/http';
 import { ExemploPage } from './../pages/exemplo/exemplo';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,7 +25,8 @@ import { ExemploPageModule } from '../pages/exemplo/exemplo.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    ExemploPageModule
+    ExemploPageModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
