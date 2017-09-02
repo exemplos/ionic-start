@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, Platform } from 'ionic-angular';
 import {Camera} from 'ionic-native';
+import {Http} from '@angular/http'
+
+import 'rxjs/add/operator/map'
 
 /**
  * Generated class for the ExemploPage page.
@@ -18,7 +21,7 @@ export class ExemploPage {
 
   public base64Image: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionsheetCtrl: ActionSheetController, public platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionsheetCtrl: ActionSheetController, public platform: Platform, public http: Http) {
   }
 
   ionViewDidLoad() {
@@ -82,6 +85,8 @@ export class ExemploPage {
       // imageData is a base64 encoded string
         this.base64Image = "data:image/jpeg;base64," + imageData;
         console.log("IMG:" +this.base64Image );
+        let msg = {"image": imageData};
+        this.http.post("http://openmultiplayer.com/mobileserver/message/asdf/picture", msg).map(res => res.json()).subscribe();
     }, (err) => {
         console.log(err);
     });
